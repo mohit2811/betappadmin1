@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 public class UserDetails extends AppCompatActivity implements View.OnClickListener {
     Button block,add50, add100, add500, add1000, add5000, add10000, add50000, minus1000, minus5000, minus10000;
     TextView balance,name;
+    EditText change_password;
     String username1,block_status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
         getSupportActionBar().setHomeButtonEnabled(true);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+change_password=findViewById(R.id.change_password);
         name = findViewById(R.id.name_txt);
         add50 = findViewById(R.id.add50);
         add100 = findViewById(R.id.add100);
@@ -965,5 +967,81 @@ finish();
         ab9.setMessage("Are You sure?").setPositiveButton("Yes", dialogClickListener9)
                 .setNegativeButton("No", dialogClickListener9).show();
 
+    }
+
+    public void change_pass(View view) {
+        final String pass = change_password.getText().toString();
+        if (pass.equals(""))
+        {
+            Toast.makeText(UserDetails.this, "enter password", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            DialogInterface.OnClickListener dialogClickListener9 = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            JSONObject jsonObject = new JSONObject();
+
+                            try {
+                                jsonObject.put("module", "change_password");
+                                jsonObject.put("username", name.getText().toString());
+                                jsonObject.put("password", pass);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url.ip, jsonObject, new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+
+                                    System.out.println(response);
+
+                                    try {
+
+                                        if (response.getString("result").equals("done")) {
+
+
+                                            Toast.makeText(UserDetails.this, "password changed successfully", Toast.LENGTH_SHORT).show();
+                                            finish();
+
+                                        } else {
+
+                                            Toast.makeText(UserDetails.this, "error try again", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+
+                                    System.out.println(error);
+
+
+                                }
+                            });
+
+                            jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 2, 2));
+
+                            Volley.newRequestQueue(UserDetails.this).add(jsonObjectRequest);
+
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            dialog.dismiss();
+                            break;
+                    }
+
+                }
+            };
+            AlertDialog.Builder ab9 = new AlertDialog.Builder(this);
+            ab9.setMessage("Do you want to change password?").setPositiveButton("Yes", dialogClickListener9)
+                    .setNegativeButton("No", dialogClickListener9).show();
+        }
     }
 }

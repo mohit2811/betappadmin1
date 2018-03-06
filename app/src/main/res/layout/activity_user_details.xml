@@ -7,193 +7,244 @@
     android:layout_height="match_parent"
     tools:context="com.inception.bettingadmin.UserDetails"
     android:padding="10dp">
-<RelativeLayout
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:padding="10dp"
 
-    >
-
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/profile"
-        android:id="@+id/profile_img"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:layout_toRightOf="@+id/profile_img"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:id="@+id/name_txt"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Balance"
-        android:layout_toRightOf="@+id/profile_img"
-        android:layout_below="@+id/name_txt"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:id="@+id/balance_txt"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00"
-        android:layout_toRightOf="@+id/balance_txt"
-        android:layout_below="@+id/name_txt"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        android:id="@+id/balance"
-        />
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/l_grey"
-        android:layout_below="@+id/profile_img"
-        android:id="@+id/balance_lay"
-        android:layout_marginTop="10dp"
-        android:padding="5dp"
-        android:gravity="center_vertical">
+        android:padding="10dp"
+
+        >
+
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_input_add"
-            />
+            android:id="@+id/profile_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/profile" />
 
         <TextView
+            android:id="@+id/name_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Balance"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/profile_img"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-            />
-
-    </LinearLayout>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/deposit_lay"
-    android:layout_below="@+id/balance_lay"
-    android:layout_margin="30dp"
-    android:orientation="vertical">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Deposit"
-    />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+50"
-        android:id="@+id/add50"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+100"
-        android:id="@+id/add100"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+500"
-        android:id="@+id/add500"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+1000"
-        android:id="@+id/add1000"
-        />
-    <Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="+5000"
-        android:id="@+id/add5000"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+10000"
-        android:id="@+id/add10000"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+50000"
-        android:id="@+id/add50000"
-        />
-
-</LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/balance_lay"
-        android:layout_margin="30dp"
-        android:layout_toRightOf="@+id/deposit_lay"
-        android:orientation="vertical">
         <TextView
+            android:id="@+id/balance_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Withdraw"
-            />
+            android:layout_below="@+id/name_txt"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/profile_img"
+            android:text="Balance"
+            android:textColor="@color/black" />
 
-        <Button
+        <TextView
+            android:id="@+id/balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-1000"
-            android:id="@+id/minus1000"
-            />
-        <Button
-            android:layout_width="wrap_content"
+            android:layout_below="@+id/name_txt"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/balance_txt"
+            android:text="00"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/balance_lay"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="-5000"
-            android:id="@+id/minus5000"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-10000"
-            android:id="@+id/minus10000"
-            />
+            android:layout_below="@+id/profile_img"
+            android:layout_marginTop="10dp"
+            android:background="@color/l_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_input_add" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Add Balance"
+
+                />
+
         </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/deposit_lay"
-        android:weightSum="2">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Block"
-            android:id="@+id/block_button"
-            android:onClick="block"
-            android:background="@color/yellow"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="1"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:onClick="delete"
-            android:background="@color/red"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            />
 
-    </LinearLayout>
-</RelativeLayout>
+        <LinearLayout
+            android:id="@+id/deposit_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/balance_lay"
+            android:layout_margin="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deposit" />
+
+            <Button
+                android:id="@+id/add50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+50" />
+
+            <Button
+                android:id="@+id/add100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+100" />
+
+            <Button
+                android:id="@+id/add500"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+500" />
+
+            <Button
+                android:id="@+id/add1000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+1000" />
+
+            <Button
+                android:id="@+id/add5000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+5000" />
+
+            <Button
+                android:id="@+id/add10000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+10000" />
+
+            <Button
+                android:id="@+id/add50000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+50000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/balance_lay"
+            android:layout_margin="30dp"
+            android:layout_toRightOf="@+id/deposit_lay"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Withdraw" />
+
+            <Button
+                android:id="@+id/minus1000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1000" />
+
+            <Button
+                android:id="@+id/minus5000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-5000" />
+
+            <Button
+                android:id="@+id/minus10000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-10000" />
+            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/pass_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/l_grey"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_below="@+id/deposit_lay"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_lock_idle_lock" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Change Password"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/change_pass_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/l_grey"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_below="@+id/pass_lay"
+            android:padding="5dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="New password"
+                android:id="@+id/change_password"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Change Password"
+                android:onClick="change_pass"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/change_pass_lay"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+
+            <Button
+                android:id="@+id/block_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="@color/yellow"
+                android:onClick="block"
+                android:text="Block" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@color/red"
+                android:onClick="delete"
+                android:text="Delete" />
+
+        </LinearLayout>
+    </RelativeLayout>
 </ScrollView>

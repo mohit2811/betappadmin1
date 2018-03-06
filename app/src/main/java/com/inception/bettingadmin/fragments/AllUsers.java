@@ -40,7 +40,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class AllUsers extends Fragment {
 
-    TextView create_user;
+    TextView create_user,bal_txt;
 
     JSONArray jsonArray;
 
@@ -63,6 +63,7 @@ public class AllUsers extends Fragment {
         recyclerView = v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         create_user = v.findViewById(R.id.create_user);
+        bal_txt=v.findViewById(R.id.bal_txt);
         progress = new ProgressDialog(getActivity());
         progress.setTitle("Loading");
         create_user.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +75,7 @@ public class AllUsers extends Fragment {
         });
 
         get_users();
+        get_total();
         return v;
     }
 
@@ -117,7 +119,42 @@ public class AllUsers extends Fragment {
 
         Volley.newRequestQueue(getActivity()).add(jsonObjectRequest);
     }
+    private void get_total() {
+        final JSONObject jsonObject = new JSONObject();
 
+        try {
+            jsonObject.put("module", "total_balance");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.print(jsonObject);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url.ip, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                System.out.println(response);
+
+                try {
+
+                    bal_txt.setText(response.getString("total"));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 2, 2));
+
+        Volley.newRequestQueue(getActivity()).add(jsonObjectRequest);
+    }
     private class Adapter extends RecyclerView.Adapter<view_holder> {
         String usernamee;
 
@@ -268,6 +305,7 @@ public class AllUsers extends Fragment {
             username = itemView.findViewById(R.id.username_);
             active_status = itemView.findViewById(R.id.active_status);
             balance = itemView.findViewById(R.id.balance_);
+
         }
     }
 
