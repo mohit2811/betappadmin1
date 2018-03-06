@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="5dp"
+    android:orientation="horizontal"
+    android:weightSum="6">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="#"
+        android:id="@+id/sr_num"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+
+        android:gravity="center"
+android:id="@+id/active_status"
+        android:orientation="horizontal"
+        android:background="@color/l_grey"
+       >
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+
+            android:id="@+id/isActive"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:layout_weight="3"
+        android:id="@+id/username_"
+        android:gravity="center"
+        android:text="Username"
+        android:background="@color/l_grey"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:layout_weight="1.5"
+        android:background="@drawable/two_sided_round"
+        android:id="@+id/balance_"
+        android:gravity="center"
+        android:text="Balance"
+        android:textColor="@color/black" />
+
+
+</LinearLayout>
+

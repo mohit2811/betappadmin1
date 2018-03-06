@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.inception.bettingadmin.CreateUser">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/d_grey"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_stroke"
+        android:hint="Enter Username"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/username_et"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textColor="@color/d_grey"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_stroke"
+        android:hint="Create Password"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/password_et"
+        android:imeOptions="actionNext"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Limit ( min 1000 )"
+        android:textColor="@color/d_grey"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:imeOptions="actionNext"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_stroke"
+        android:hint="Enter Limit"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/limit_et"
+        android:inputType="number"
+        android:imeOptions="actionDone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text=" Create "
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="right"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:clickable="true"
+        android:onClick="create_"/>
+
+</LinearLayout>
