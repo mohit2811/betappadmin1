@@ -185,12 +185,6 @@
                 android:layout_height="wrap_content"
                 android:src="@android:drawable/ic_lock_idle_lock" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Change Password"
-                />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/change_pass_lay"
@@ -246,5 +240,12 @@
                 android:text="Delete" />
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/pass_lay"
+            android:layout_toEndOf="@+id/profile_img"
+            android:text="Change Password" />
     </RelativeLayout>
 </ScrollView>
