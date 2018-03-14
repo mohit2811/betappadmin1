@@ -27,28 +27,7 @@
             android:orientation="vertical"
 
             android:padding="10dp">
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Match Odds"
-                android:textColor="@color/colorPrimary"
-                />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BLOCK"
-        android:textSize="13sp"
-        android:background="@color/red"
-        android:textColor="@color/white"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_marginLeft="30dp"
-        android:id="@+id/block_status"/>
-</LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,8 +59,30 @@
         </LinearLayout>
 
 
-
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/match_odd_icon">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Match Odds"
+                android:textColor="@color/colorPrimary"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BLOCK"
+                android:textSize="13sp"
+                android:background="@color/red"
+                android:textColor="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/block_status"/>
+        </LinearLayout>
     </RelativeLayout>
 
 
