@@ -33,7 +33,8 @@
         <activity android:name=".MatchOddDetails" />
         <activity android:name=".CreateUser" />
         <activity android:name=".UserDetails" />
-        <activity android:name=".Markets"></activity>
+        <activity android:name=".Markets" />
+        <activity android:name=".messages"></activity>
     </application>
 
 </manifest>
