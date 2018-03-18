@@ -264,7 +264,7 @@ EditText message_et;
 
 
                                         Toast.makeText(messages.this, "messages deleted successfully", Toast.LENGTH_SHORT).show();
-                                        finish();
+
 
                                     } else {
 

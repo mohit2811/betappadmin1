@@ -53,7 +53,6 @@ public class ShowFragments extends Fragment {
     String saved_id, saved_name;
 
     public ShowFragments() {
-        // Required empty public constructor
     }
 
 
@@ -66,7 +65,7 @@ public class ShowFragments extends Fragment {
 
         recyclerView = v.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-blocked_id=new ArrayList<>();
+        blocked_id = new ArrayList<>();
         SharedPreferences sp = getActivity().getSharedPreferences("user_info", MODE_PRIVATE);
         saved_id = sp.getString("distributor_id", "");
         saved_name = sp.getString("username", "");
@@ -112,56 +111,54 @@ blocked_id=new ArrayList<>();
 
 
     }
-public void block_detail()
-{
-    JSONObject jsonObject = new JSONObject();
 
-    try {
-        jsonObject.put("module", "block_detail");
-        jsonObject.put("dis_id", saved_id);
-        jsonObject.put("dis_name", saved_name);
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }
-    System.out.println(jsonObject);
-    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url.ip, jsonObject, new Response.Listener<JSONObject>() {
-        @Override
-        public void onResponse(JSONObject response) {
+    public void block_detail() {
+        JSONObject jsonObject = new JSONObject();
 
-            System.out.println(response);
+        try {
+            jsonObject.put("module", "block_detail");
+            jsonObject.put("dis_id", saved_id);
+            jsonObject.put("dis_name", saved_name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(jsonObject);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url.ip, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
 
-            try {
+                System.out.println(response);
 
-               JSONArray event=response.getJSONArray("result");
-               for (int i=0;i<event.length();i++)
-               {
-                   blocked_id.add(event.getJSONObject(i).getString("event_id"));
-               }
+                try {
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                    JSONArray event = response.getJSONArray("result");
+                    for (int i = 0; i < event.length(); i++) {
+                        blocked_id.add(event.getJSONObject(i).getString("event_id"));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
             }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println(error);
 
 
-        }
-    }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
+            }
+        });
 
-            System.out.println(error);
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 2, 2));
 
-
-        }
-    });
-
-    jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(20000, 2, 2));
-
-    Volley.newRequestQueue(getActivity()).add(jsonObjectRequest);
-}
+        Volley.newRequestQueue(getActivity()).add(jsonObjectRequest);
+    }
 
     private class Adapter extends RecyclerView.Adapter<view_holder> {
-        Boolean check = false;
-        String block;
+
 
         @Override
         public view_holder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -176,63 +173,72 @@ public void block_detail()
 
                 holder.match_vs.setText(jsonObject.getString("name"));
                 holder.date_time.setText(getDate(jsonObject.getString("openDate")));
-if (blocked_id.contains(jsonObject.getString("id")))
-{
-    holder.block_status.setText("SHOW");
-
-    holder.match_vs.setClickable(false);
-    holder.cell_layout.setAlpha((float) 0.7);
-    holder.block_status.setBackgroundColor(Color.GREEN);
-}
-else
-{
-    holder.block_status.setText("BLOCK");
-        holder.cell_layout.setAlpha(1);
-    holder.match_vs.setClickable(true);
-    holder.block_status.setBackgroundColor(Color.RED);
-}
+                if (blocked_id.contains(jsonObject.getString("id"))) {
+                    holder.block_status.setText("SHOW");
+                    holder.match_vs.setOnClickListener(null);
+                    holder.cell_layout.setAlpha((float) 0.7);
+                    holder.block_status.setBackgroundColor(Color.GREEN);
+                } else {
+                    holder.block_status.setText("BLOCK");
+                    holder.cell_layout.setAlpha(1);
+                    holder.match_vs.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                Intent i = new Intent(getContext(), MatchOddDetails.class);
+                                i.putExtra("event_id", jsonObject.getString("id"));
+                                startActivity(i);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    holder.block_status.setBackgroundColor(Color.RED);
+                }
                 holder.block_status.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (holder.block_status.getText().equals("SHOW"))
-                        {
+                        if (holder.block_status.getText().equals("SHOW")) {
                             holder.block_status.setText("BLOCK");
-
                             holder.cell_layout.setAlpha(1);
-
+                            holder.match_vs.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    try {
+                                        Intent i = new Intent(getContext(), MatchOddDetails.class);
+                                        i.putExtra("event_id", jsonObject.getString("id"));
+                                        startActivity(i);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
                             holder.block_status.setBackgroundColor(Color.RED);
                             try {
-                                unblock_block_bet(jsonObject.getString("id"));
+                                unblock_bet(jsonObject.getString("id"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            };
+                            }
+                            ;
 
                         } else {
                             holder.block_status.setText("SHOW");
                             holder.cell_layout.setAlpha((float) 0.7);
                             holder.block_status.setBackgroundColor(Color.GREEN);
+                            holder.match_vs.setOnClickListener(null);
+
                             try {
                                 block_bet(jsonObject.getString("id"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            };
+                            }
+
                         }
                     }
                 });
 
 
-                holder.match_vs.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            Intent i = new Intent(getContext(), MatchOddDetails.class);
-                            i.putExtra("event_id", jsonObject.getString("id"));
-                         startActivity(i);}
-                            catch(JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                });
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -297,7 +303,7 @@ else
         Volley.newRequestQueue(getActivity()).add(jsonObjectRequest);
     }
 
-    public void unblock_block_bet(String event_id) {
+    public void unblock_bet(String event_id) {
         JSONObject jsonObject = new JSONObject();
 
         try {
