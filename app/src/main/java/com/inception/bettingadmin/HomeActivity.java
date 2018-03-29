@@ -31,12 +31,11 @@ import org.json.JSONObject;
 public class HomeActivity extends AppCompatActivity {
 
 
-
     private ActionBarDrawerToggle toggle;
 
     DrawerLayout drawerLayout;
-    String savedname,savedid;
-    FragmentManager fm ;
+    String savedname, savedid;
+    FragmentManager fm;
     TextView message;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -73,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("user_info", MODE_PRIVATE);
         savedname = sp.getString("username", "");
         savedid = sp.getString("distributor_id", "");
-message=findViewById(R.id.message_txt);
+        message = findViewById(R.id.message_txt);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -103,7 +102,7 @@ message=findViewById(R.id.message_txt);
                 System.out.println(response);
 
                 try {
-JSONObject ob =response.getJSONObject("result");
+                    JSONObject ob = response.getJSONObject("result");
                     message.setText(ob.getString("message"));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -133,13 +132,10 @@ JSONObject ob =response.getJSONObject("result");
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId() == android.R.id.home)
-        {
-            if(drawerLayout.isDrawerOpen(Gravity.START))
-            {
+        if (item.getItemId() == android.R.id.home) {
+            if (drawerLayout.isDrawerOpen(Gravity.START)) {
                 drawerLayout.closeDrawer(Gravity.START);
-            }
-            else {
+            } else {
                 drawerLayout.openDrawer(Gravity.START);
             }
         }
@@ -147,21 +143,19 @@ JSONObject ob =response.getJSONObject("result");
         return true;
     }
 
-    private void open_home()
-    {
+    private void open_home() {
         FragmentTransaction ft = fm.beginTransaction();
 
-        ft.replace(R.id.main_frame , new ShowFragments());
+        ft.replace(R.id.main_frame, new ShowFragments());
 
         ft.commit();
     }
 
-    private void open_users()
-    {
+    private void open_users() {
 
         FragmentTransaction ft = fm.beginTransaction();
 
-        ft.replace(R.id.main_frame , new AllUsers());
+        ft.replace(R.id.main_frame, new AllUsers());
 
         ft.commit();
 
@@ -169,12 +163,12 @@ JSONObject ob =response.getJSONObject("result");
 
     public void logout(View view) {
 
-        SharedPreferences.Editor sp = getSharedPreferences("user_info" , MODE_PRIVATE).edit();
+        SharedPreferences.Editor sp = getSharedPreferences("user_info", MODE_PRIVATE).edit();
 
         sp.clear();
         sp.commit();
 
-        startActivity(new Intent(HomeActivity.this , LoginActivity.class));
+        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
 
         finish();
     }
@@ -185,7 +179,7 @@ JSONObject ob =response.getJSONObject("result");
 
         FragmentTransaction ft = fm.beginTransaction();
 
-        ft.replace(R.id.main_frame , new AllUsers());
+        ft.replace(R.id.main_frame, new AllUsers());
 
         ft.commit();
 
@@ -197,7 +191,7 @@ JSONObject ob =response.getJSONObject("result");
 
         FragmentTransaction ft = fm.beginTransaction();
 
-        ft.replace(R.id.main_frame , new ShowFragments());
+        ft.replace(R.id.main_frame, new ShowFragments());
 
         ft.commit();
 
@@ -208,7 +202,7 @@ JSONObject ob =response.getJSONObject("result");
 
         drawerLayout.closeDrawer(Gravity.START);
 
-        startActivity(new Intent(HomeActivity.this , Markets.class));
+        startActivity(new Intent(HomeActivity.this, Markets.class));
 
 
     }
@@ -216,11 +210,20 @@ JSONObject ob =response.getJSONObject("result");
     public void messages(View view) {
         drawerLayout.closeDrawer(Gravity.START);
 
-        startActivity(new Intent(HomeActivity.this , messages.class));
+        startActivity(new Intent(HomeActivity.this, messages.class));
     }
+
     public void onResume() {
         super.onResume();
 
         get_message();
+    }
+
+    public void open_settings(View view) {
+
+        drawerLayout.closeDrawer(Gravity.START);
+
+        startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+
     }
 }
