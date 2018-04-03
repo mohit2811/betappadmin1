@@ -46,7 +46,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class ShowFragments extends Fragment {
 
     private JSONArray jsonArray;
-    ArrayList<String> blocked_id;
+    private static ArrayList<String> blocked_id;
     private RecyclerView recyclerView;
 
 
@@ -132,6 +132,7 @@ public class ShowFragments extends Fragment {
                 try {
 
                     JSONArray event = response.getJSONArray("result");
+                    blocked_id.clear();
                     for (int i = 0; i < event.length(); i++) {
                         blocked_id.add(event.getJSONObject(i).getString("event_id"));
                     }
@@ -187,6 +188,8 @@ public class ShowFragments extends Fragment {
                             try {
                                 Intent i = new Intent(getContext(), MatchOddDetails.class);
                                 i.putExtra("event_id", jsonObject.getString("id"));
+                                i.putExtra("open_date", jsonObject.getString("openDate"));
+                                i.putExtra("match_name" , jsonObject.getString("name"));
                                 startActivity(i);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -207,6 +210,9 @@ public class ShowFragments extends Fragment {
                                     try {
                                         Intent i = new Intent(getContext(), MatchOddDetails.class);
                                         i.putExtra("event_id", jsonObject.getString("id"));
+                                        i.putExtra("open_date", jsonObject.getString("openDate"));
+                                        i.putExtra("match_name" , jsonObject.getString("name"));
+
                                         startActivity(i);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -388,4 +394,12 @@ public class ShowFragments extends Fragment {
         return OurDate;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        block_detail();
+
+        get_data();
+    }
 }

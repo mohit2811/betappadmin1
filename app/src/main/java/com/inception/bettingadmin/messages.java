@@ -92,6 +92,7 @@ EditText message_et;
 
                                 Toast.makeText(messages.this , "message added successfully" , Toast.LENGTH_SHORT).show();
 
+                                get_messages();
 
                             } else {
 
